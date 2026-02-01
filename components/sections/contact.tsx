@@ -13,22 +13,33 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [submitted, setSubmitted] = React.useState(false);
 
+  const formRef = React.useRef<HTMLFormElement>(null);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    if (formRef.current) {
+      const timeInput =
+        formRef.current.querySelector<HTMLInputElement>('[name="time"]');
+      if (timeInput) {
+        timeInput.value = new Date().toLocaleString();
+      }
+    }
+
     try {
+      if (!formRef.current) return;
       await emailjs.sendForm(
-        "YOUR_SERVICE_ID",
-        "YOUR_TEMPLATE_ID",
-        e.currentTarget,
-        "YOUR_PUBLIC_KEY",
+        "service_farnaz84",
+        "template_kr0l7df",
+        formRef.current,
+        "CNKcghM5F5yiakIB7",
       );
       setSubmitted(true);
-      e.currentTarget.reset();
+      formRef.current.reset();
     } catch (error) {
       console.error(error);
-      alert("مشکلی پیش اومد، لطفاً دوباره تلاش کنید.");
+      alert("pls try again later:)");
     } finally {
       setIsSubmitting(false);
       setTimeout(() => setSubmitted(false), 3000);
@@ -100,21 +111,6 @@ export function ContactSection() {
                 </div>
               </div>
             </div>
-
-            <div className="p-6 rounded-2xl bg-linear-to-br from-primary/10 to-accent/10 border border-primary/20">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-                </span>
-                <span className="font-medium">Open to Opportunities</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                I'm looking for opportunities to grow and contribute to
-                innovative projects. Let's connect and explore how I can help
-                bring your ideas to life.
-              </p>
-            </div>
           </div>
 
           <div
@@ -122,7 +118,8 @@ export function ContactSection() {
               isInView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="time" /> {/* زمان ارسال */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-sm font-medium">
@@ -175,7 +172,6 @@ export function ContactSection() {
                   className="bg-card resize-none"
                 />
               </div>
-
               <Button
                 type="submit"
                 size="lg"
