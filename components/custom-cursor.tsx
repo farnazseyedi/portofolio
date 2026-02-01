@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+
+    checkDesktop();
+
+    window.addEventListener("resize", checkDesktop);
+
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
+
+  useEffect(() => {
+    if (!isDesktop) return;
 
     const cursor = cursorRef.current;
     if (!cursor) return;
@@ -18,9 +29,9 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  }, [isDesktop]);
 
-  if (typeof window !== "undefined" && window.innerWidth < 768) return null;
+  if (!isDesktop) return null;
 
   return (
     <>

@@ -37,7 +37,7 @@ const projects = [
   {
     title: "Makeen Co-Working Space Platform",
     description:
-      "A comprehensive co-working space platform with separate user and admin panels. Utilized Jalali date libraries, followed component-based architecture, and managed complex data flow between components.",
+      "A comprehensive co-working space platform with separate user and admin panels.",
     image: "/images/makeen.png",
     tags: [
       "React",
@@ -52,7 +52,7 @@ const projects = [
   {
     title: "Makeen Co-Working Space Platform (AdminPanel)",
     description:
-      "A comprehensive co-working space platform with separate user and admin panels. Utilized Jalali date libraries, followed component-based architecture, and managed complex data flow between components.",
+      "Utilized Jalali date libraries, followed component-based architecture, and managed complex data flow between components.",
     image: "/images/makeen2.png",
     tags: [
       "React",
@@ -173,6 +173,10 @@ export function ProjectsSection() {
             Featured Projects
           </h2>
           <div className="w-20 h-1 bg-primary rounded-full mx-auto" />
+          <h1>
+            (( I am not allowed to show my GitHub for this project because of my
+            employer.))
+          </h1>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
