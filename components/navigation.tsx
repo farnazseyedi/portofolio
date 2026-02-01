@@ -26,28 +26,13 @@ export function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  {
-    navItems.map((item) => (
-      <Link
-        key={item.href}
-        href={item.href}
-        onClick={() => setIsOpen(false)}
-        className={cn(
-          "px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-secondary hover:text-primary",
-          pathname === item.href
-            ? "text-primary bg-secondary"
-            : "text-muted-foreground",
-        )}
-      >
-        {item.label}
-      </Link>
-    ));
-  }
+  React.useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
     <header
@@ -75,7 +60,6 @@ export function Navigation() {
             />
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
               <Link
@@ -96,7 +80,6 @@ export function Navigation() {
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
             <Button
@@ -114,7 +97,6 @@ export function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         <div
           className={cn(
             "md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-background/95 backdrop-blur-md",
@@ -126,6 +108,7 @@ export function Navigation() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={() => setIsOpen(false)}
                 className={cn(
                   "px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-secondary hover:text-primary",
                   pathname === item.href
