@@ -31,9 +31,23 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  React.useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  {
+    navItems.map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        onClick={() => setIsOpen(false)}
+        className={cn(
+          "px-4 py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-secondary hover:text-primary",
+          pathname === item.href
+            ? "text-primary bg-secondary"
+            : "text-muted-foreground",
+        )}
+      >
+        {item.label}
+      </Link>
+    ));
+  }
 
   return (
     <header
@@ -103,7 +117,7 @@ export function Navigation() {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
+            "md:hidden overflow-hidden transition-all duration-300 ease-in-out bg-background/95 backdrop-blur-md",
             isOpen ? "max-h-80 pb-4" : "max-h-0",
           )}
         >

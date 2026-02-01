@@ -20,7 +20,7 @@ const projects = [
       "HTML",
       "CSS",
     ],
-    liveUrl: "https://shopping-page-henna.vercel.app/shop",
+    liveUrl: "https://shopping-page-henna.vercel.app/",
     githubUrl: "https://github.com/farnazseyedi/shopping-page",
     featured: true,
   },
@@ -66,12 +66,11 @@ const projects = [
   },
   {
     title: "Frontend Development Projects",
-    description:
-      "Collection of responsive web applications built during Makeen Academy bootcamp, focusing on modern JavaScript, React Hooks, and clean, maintainable code principles.",
+    description: "introduce myself",
     image: "/images/thissite.png",
     tags: ["React", "JavaScript", "Responsive Design", "REST APIs"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://portofolio-sigma-red-mhgpdozfr3.vercel.app/",
+    githubUrl: "https://github.com/farnazseyedi/portofolio",
     featured: true,
   },
 ];
@@ -104,15 +103,17 @@ function ProjectCard({
         </div>
 
         <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform"
-            aria-label="View live project"
-          >
-            <ExternalLink className="h-5 w-5" />
-          </a>
+          {project.liveUrl !== "#" && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-primary text-primary-foreground hover:scale-110 transition-transform"
+              aria-label="View live project"
+            >
+              <ExternalLink className="h-5 w-5" />
+            </a>
+          )}
           <a
             href={project.githubUrl}
             target="_blank"
