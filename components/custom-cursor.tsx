@@ -6,6 +6,8 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.innerWidth < 768) return;
+
     const cursor = cursorRef.current;
     if (!cursor) return;
 
@@ -17,6 +19,8 @@ export default function CustomCursor() {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
+
+  if (typeof window !== "undefined" && window.innerWidth < 768) return null;
 
   return (
     <>
