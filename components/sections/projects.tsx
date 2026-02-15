@@ -8,6 +8,25 @@ import Image from "next/image";
 
 const projects = [
   {
+    title: "RAWG Video Games Database API ((use vpn))",
+    description:
+      "More than 350,000 games for 50 platforms including mobiles. tags, genres ,platforms , release dates, Metacritic ratings.",
+    image: "/images/rawg.png",
+    tags: [
+      "Multi-select items",
+      "FetchApi",
+      "details for each card",
+      "Headless Ui",
+      "search",
+      "Item virtualization",
+      "Select all / Select none",
+      "Item grouping",
+    ],
+    liveUrl: "https://gamers-place.vercel.app/",
+    githubUrl: "https://github.com/farnazseyedi/Gamers-place",
+    featured: true,
+  },
+  {
     title: "Shopping Page",
     description:
       "Collection of responsive web applications built during Makeen Academy bootcamp, focusing on modern JavaScript, React Hooks, and clean, maintainable code principles.",
@@ -173,10 +192,6 @@ export function ProjectsSection() {
             Featured Projects
           </h2>
           <div className="w-20 h-1 bg-primary rounded-full mx-auto" />
-          <h1>
-            (( I am not allowed to show my GitHub for this project because of my
-            employer.))
-          </h1>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
